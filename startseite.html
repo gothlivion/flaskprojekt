@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Suche</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><span class="highlight">🎬 Film Suche</span></h1>
+            <p>Finde deinen Lieblingsfilm in unserer Sammlung</p>
+        </header>
+
+        <!-- Suchformular -->
+        <section class="search-form">
+            <form method="get" action="/">
+                <label for="search">Film suchen:</label>
+                <input type="text" id="search" name="search" placeholder="Filmname eingeben" required>
+                <button type="submit">🔍 Suchen</button>
+            </form>
+        </section>
+
+        <!-- Button für die komplette Liste -->
+        <section class="full-list">
+            <a href="/" class="button show-all">🎥 Alle Filme anzeigen</a>
+        </section>
+
+        <!-- Ergebnisliste -->
+        <section class="results">
+            <h2>🎞️ Suchergebnisse (Gesamtzahl: {{ movies|length }})</h2>
+            <ol>
+                {% if movies %}
+                    {% for movie in movies %}
+                        <li>{{ loop.index }}. {{ movie }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>Keine Filme gefunden.</li>
+                {% endif %}
+            </ol>
+            <p>Gesamtzahl der Filme: {{ movies|length }}</p>
+        </section>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
